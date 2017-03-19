@@ -16,12 +16,15 @@ public class User {
     private String email;
     @SerializedName("profile_url")
     private String profileUrl;
+    @SerializedName("location")
+    private String location;
 
-    public User(String firstName, String lastName, String email, String profileUrl) {
+    public User(String firstName, String lastName, String email, String profileUrl, String location) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.profileUrl = profileUrl;
+        this.location = location;
     }
 
     /*
@@ -58,5 +61,13 @@ public class User {
 
     public void setProfileUrl(String profileUrl) {
         this.profileUrl = profileUrl;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

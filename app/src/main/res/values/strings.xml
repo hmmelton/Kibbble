@@ -10,4 +10,16 @@
     <!-- Splashscreen strings -->
     <string name="title_activity_splashscreen">SplashscreenActivity</string>
     <string name="subheader">It\'s Tinder for dogs</string>
+
+    <!-- Login strings -->
+    <string name="title_activity_login">Login</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="login_facebook">Login with Facebook</string>
+
+    <!-- Settings strings -->
+    <string name="title_activity_settings">Settings</string>
+    <string name="filters">Filters:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>

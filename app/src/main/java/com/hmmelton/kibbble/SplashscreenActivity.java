@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.facebook.AccessToken;
@@ -20,8 +22,11 @@ import com.hmmelton.kibbble.utils.SharedPrefsUtil;
 
 import org.json.JSONException;
 
+import java.util.Arrays;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -31,21 +36,31 @@ public class SplashscreenActivity extends AppCompatActivity {
 
     @BindView(R.id.splash_content)
     RelativeLayout mContentView;
+    @BindView(R.id.login_facebook)
+    Button mFBLogin;
 
-    private CallbackManager mCallbackManager;
+    @OnClick(R.id.login_facebook)
+    void onFacebookLoginClick() {
+        // Login with Facebook
+        LoginManager.getInstance().logInWithReadPermissions(SplashscreenActivity.this,
+                Arrays.asList("public_profile", "email"));
+        //login();
+    }
+
+    private final int LOGIN_ANIMATION_TIME = 600;
     private final int SPLASHSCREEN_WAIT_TIME = 1000;
 
     @SuppressWarnings("unused")
     private final String TAG = getClass().getSimpleName();
+
+    // Facebook callback manager
+    private CallbackManager mCallbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
         ButterKnife.bind(this);
-
-        // Initialize Facebook login
-        initFacebookLogin();
 
         // Note that some of these constants are new as of API 16 (Jelly Bean)
         // and API 19 (KitKat). It is safe to use them, as they are inlined
@@ -67,6 +82,9 @@ public class SplashscreenActivity extends AppCompatActivity {
                 login();
             }
         }, SPLASHSCREEN_WAIT_TIME);
+
+        // Initialize Facebook login
+        initFacebookLogin();
     }
 
     @Override
@@ -86,6 +104,7 @@ public class SplashscreenActivity extends AppCompatActivity {
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
+                        Log.e(TAG, "going to do graph request");
                         makeFBGraphRequest(loginResult.getAccessToken());
                     }
 
@@ -117,8 +136,12 @@ public class SplashscreenActivity extends AppCompatActivity {
                         String profileUrl = object.getJSONObject("picture")
                                 .getJSONObject("data")
                                 .getString("url");
+                        String location = "Seattle, WA";
 
-                        SharedPrefsUtil.saveUser(new User(firstName, lastName, email, profileUrl));
+                        Log.d(TAG, profileUrl);
+
+                        SharedPrefsUtil.saveUser(new User(firstName, lastName, email, profileUrl,
+                                location));
                         login();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -131,17 +154,23 @@ public class SplashscreenActivity extends AppCompatActivity {
     }
 
     /**
-     * This method navigates to the login page
+     * This method navigates to the login page.
      */
     private void showLogin() {
-        // TODO: Navigate to login
+        // Create fade in animation for title
+        AlphaAnimation fadeInAnim = new AlphaAnimation(0.0f, 1.0f);
+        fadeInAnim.setDuration(LOGIN_ANIMATION_TIME);
+        fadeInAnim.setStartOffset(LOGIN_ANIMATION_TIME);
+
+        mFBLogin.setVisibility(View.VISIBLE);
+        mFBLogin.startAnimation(fadeInAnim);
     }
 
     /**
      * This method logs the user into the application.
      */
     private void login() {
-        startActivity(new Intent(SplashscreenActivity.this, MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         finish();
     }

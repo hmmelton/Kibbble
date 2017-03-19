@@ -1,5 +1,6 @@
 package com.hmmelton.kibbble;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.util.Log;
 import com.hmmelton.kibbble.fragments.MainFragment;
 import com.hmmelton.kibbble.fragments.ProfileFragment;
 import com.hmmelton.kibbble.fragments.SavedFragment;
+import com.hmmelton.kibbble.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
         mPager.setCurrentItem(1);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.OPEN_SETTINGS) {
+            // Coming from settings page
+            mPager.setCurrentItem(0);
+        }
+    }
+
     private void setUpViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -76,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(MainFragment.newInstance());
         adapter.addFragment(SavedFragment.newInstance());
         mPager.setAdapter(adapter);
+
+        // Prevent pager from paging
+        mPager.setOnTouchListener((view, motionEvent) -> true);
     }
 
     // Adapter class for view pager tabs

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/activity_settings"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hmmelton.kibbble.SettingsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/settings_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?colorPrimary">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/title_activity_settings"
+                android:textColor="@android:color/white"
+                android:textSize="12pt"/>
+
+            <ImageView
+                android:id="@+id/settings_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/half_standard_margin"
+                android:src="@drawable/ic_back"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/settings_toolbar"
+        android:padding="@dimen/standard_margin">
+
+        <TextView
+            android:id="@+id/filters_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filters"
+            android:textSize="10pt"/>
+        
+        <CheckBox
+            android:id="@+id/checkbox_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/filters_title"
+            android:text="@string/male"
+            android:textSize="9pt"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_male"
+            android:text="@string/female"
+            android:textSize="9pt"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
