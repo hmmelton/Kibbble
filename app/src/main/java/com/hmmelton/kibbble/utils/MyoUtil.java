@@ -13,7 +13,10 @@ import com.thalmic.myo.scanner.ScanActivity;
  */
 
 public class MyoUtil {
-    public static void setUpMyo(Context context, DeviceListener listener) {
+
+    private static DeviceListener mDeviceListener;
+
+    public static void setUpMyo(Context context) {
         // Get instance of hub, if there is one
         Hub hub = Hub.getInstance();
         if (!hub.init(context)) {
@@ -27,6 +30,10 @@ public class MyoUtil {
         // Set locking policy
         Hub.getInstance().setLockingPolicy(Hub.LockingPolicy.STANDARD);
 
-        Hub.getInstance().addListener(listener); // Add listener
+        Hub.getInstance().addListener(mDeviceListener); // Add listener
+    }
+
+    public static void setDeviceListener(DeviceListener listener) {
+        mDeviceListener = listener;
     }
 }

@@ -64,4 +64,15 @@
         android:text="log out"
         android:textColor="?colorPrimaryDark"/>
 
+    <Button
+        android:id="@+id/sync_myo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/double_standard_margin"
+        android:layout_marginRight="@dimen/double_standard_margin"
+        android:layout_marginBottom="@dimen/standard_margin"
+        android:text="Sync Myo"
+        android:layout_above="@id/log_out"
+        android:textColor="?colorPrimaryDark"/>
+
 </RelativeLayout>

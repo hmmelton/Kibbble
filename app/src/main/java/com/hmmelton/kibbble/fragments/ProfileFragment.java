@@ -16,6 +16,7 @@ import com.hmmelton.kibbble.SettingsActivity;
 import com.hmmelton.kibbble.SplashscreenActivity;
 import com.hmmelton.kibbble.models.User;
 import com.hmmelton.kibbble.utils.Constants;
+import com.hmmelton.kibbble.utils.MyoUtil;
 import com.hmmelton.kibbble.utils.SharedPrefsUtil;
 
 import butterknife.BindView;
@@ -51,6 +52,11 @@ public class ProfileFragment extends Fragment {
 
         startActivity(new Intent(getActivity(), SplashscreenActivity.class));
         getActivity().finish();
+    }
+
+    @OnClick(R.id.sync_myo)
+    void onSyncMyoClick() {
+        MyoUtil.setUpMyo(getContext());
     }
 
     @Nullable

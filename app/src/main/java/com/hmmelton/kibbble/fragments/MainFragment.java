@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.hmmelton.kibbble.R;
 import com.hmmelton.kibbble.models.Profile;
 import com.hmmelton.kibbble.utils.JsonUtil;
+import com.hmmelton.kibbble.utils.MyoUtil;
 import com.hmmelton.kibbble.views.Card;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
@@ -79,6 +80,8 @@ public class MainFragment extends Fragment {
 
         mProfiles = new ArrayList<>();
 
+        MyoUtil.setDeviceListener(mListener);
+
         // Create swipe view
         mSwipeView.getBuilder()
                 .setDisplayViewCount(3)
@@ -93,8 +96,6 @@ public class MainFragment extends Fragment {
             mSwipeView.addView(new Card(getActivity(), profile, mSwipeView));
             mProfiles.add(profile);
         }
-
-        //MyoUtil.setUpMyo(getContext(), mListener);
 
         return rootView;
     }
