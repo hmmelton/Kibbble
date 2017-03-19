@@ -15,6 +15,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".KibbbleApplication"
         android:theme="@style/Kibbble">
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
