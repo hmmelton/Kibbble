@@ -3,12 +3,14 @@ package com.hmmelton.kibbble.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by harrisonmelton on 3/18/17.
  * This is a model class holding information for listed pet profiles.
  */
 
-public class Profile {
+public class Profile implements Serializable {
     @SerializedName("url")
     @Expose
     private String url;

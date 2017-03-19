@@ -40,8 +40,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/settings_toolbar"
-        android:padding="@dimen/standard_margin">
+        android:padding="@dimen/standard_margin"
+        android:layout_below="@+id/settings_toolbar"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:id="@+id/filters_title"
@@ -49,12 +50,22 @@
             android:layout_height="wrap_content"
             android:text="@string/filters"
             android:textSize="10pt"/>
-        
+
+        <TextView
+            android:id="@+id/sex_filter_title"
+            android:layout_below="@id/filters_title"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sex"
+            android:textSize="9pt"/>
+
         <CheckBox
             android:id="@+id/checkbox_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/filters_title"
+            android:layout_below="@id/sex_filter_title"
+            android:checked="true"
             android:text="@string/male"
             android:textSize="9pt"/>
 
@@ -63,8 +74,72 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/checkbox_male"
+            android:checked="true"
             android:text="@string/female"
             android:textSize="9pt"/>
+
+        <TextView
+            android:id="@+id/size_filter_title"
+            android:layout_below="@id/checkbox_female"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/size"
+            android:textSize="9pt"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/size_filter_title"
+            android:checked="true"
+            android:text="@string/small"
+            android:textSize="9pt"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_small"
+            android:checked="true"
+            android:text="@string/medium"
+            android:textSize="9pt"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_medium"
+            android:checked="true"
+            android:text="@string/large"
+            android:textSize="9pt"/>
+
+        <TextView
+            android:id="@+id/age_filter_title"
+            android:layout_below="@id/checkbox_large"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/age"
+            android:textSize="9pt"/>
+
+        <SeekBar
+            android:id="@+id/filters_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/age_filter_title"
+            android:layout_marginTop="@dimen/half_standard_margin"
+            android:thumbTint="?colorAccent"
+            android:progressTint="?colorAccent"/>
+
+        <Button
+            android:id="@+id/apply_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textColor="@android:color/white"
+            android:text="@string/apply"
+            android:background="?colorAccent"/>
 
     </RelativeLayout>
 

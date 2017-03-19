@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/activity_dog_profile"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hmmelton.kibbble.DogProfileActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/dog_profile_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?colorPrimary">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/app_name"
+                android:textColor="@android:color/white"
+                android:textSize="12pt"/>
+
+            <ImageView
+                android:id="@+id/dog_profile_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/half_standard_margin"
+                android:src="@drawable/ic_back"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.hmmelton.kibbble.views.SquareImageView
+        android:id="@+id/dog_profile_image"
+        android:layout_below="@id/dog_profile_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:byHeight="false"/>
+
+    <LinearLayout
+        android:id="@+id/dog_profile_title_bar"
+        android:orientation="vertical"
+        android:layout_below="@id/dog_profile_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/standard_margin">
+
+        <TextView
+            android:id="@+id/dog_profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="10pt"/>
+
+        <TextView
+            android:id="@+id/dog_profile_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sammamish"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/dog_profile_title_bar"
+        android:background="#d4d4d4"/>
+
+</RelativeLayout>

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hmmelton.kibbble.R;
 import com.hmmelton.kibbble.models.Profile;
+import com.hmmelton.kibbble.utils.DummyDataUtil;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Resolve;
@@ -57,7 +58,6 @@ public class Card {
     @SwipeOut
     private void onSwipedOut(){
         Log.d("EVENT", "onSwipedOut");
-        mSwipeView.addView(this);
     }
 
     @SwipeCancelState
@@ -67,7 +67,8 @@ public class Card {
 
     @SwipeIn
     private void onSwipeIn(){
-        Log.d("EVENT", "onSwipedIn");
+        // Save profile to global collection
+        DummyDataUtil.addSavedProfile(this.mProfile);
     }
 
     @SwipeInState
