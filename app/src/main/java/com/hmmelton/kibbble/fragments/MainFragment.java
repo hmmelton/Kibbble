@@ -91,4 +91,8 @@ public class MainFragment extends Fragment {
 
         return rootView;
     }
+
+    public static MainFragment newInstance() {
+        return new MainFragment();
+    }
 }
