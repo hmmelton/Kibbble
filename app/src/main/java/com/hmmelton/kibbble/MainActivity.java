@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.hmmelton.kibbble.fragments.MainFragment;
 import com.hmmelton.kibbble.fragments.ProfileFragment;
@@ -29,10 +30,23 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.pager)
     ViewPager mPager;
 
-    // OnClick methods
+    /*
+     * OnClick methods for scrolling tabs
+     */
+    @OnClick(R.id.toolbar_profile)
+    void onProfileClicked() {
+        Log.d(TAG, "profile clicked");
+        mPager.setCurrentItem(0, true);
+    }
+
     @OnClick(R.id.toolbar_title)
     void onTitleClick() {
         mPager.setCurrentItem(1, true);
+    }
+
+    @OnClick(R.id.toolbar_saved)
+    void onSavedClicked() {
+        mPager.setCurrentItem(2, true);
     }
 
     @Override
