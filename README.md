@@ -12,8 +12,8 @@ Kibbble has a user interface very similar to Tinder's in the sense that you swip
 Facebook login is used to pull user's home location
 ![Kibbble Login](/images/Kibbble_Login.png)
 
-Dogs are swiped right to save, left to ignore
+Dogs are swiped right to save, left to ignore\n
 ![Kibbble Main Page](/images/Kibbble_Puppy.png)
 
-Dogs can be filtered by sex, size, and age
+Dogs can be filtered by sex, size, and age\n
 ![Kibbble Filters](/images/Kibbble_Filters.png)
