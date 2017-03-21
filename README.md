@@ -9,4 +9,11 @@ Every day in the United States, nearly **_5,500_** dogs and cats are euthanized 
 Kibbble has a user interface very similar to Tinder's in the sense that you swipe cards left or right depending on your preference.  In this case, however, the cards are dogs that are available for adoption.  A swipe right indicates the user's interest in adopting that dog.  By collecting user preference of sex, age, and breed of dog, Kibbble can inform shelters where specific dogs are most likely to be adopted, helping the shelters more efficiently move around their dogs.
 
 ## Images:
+Facebook login is used to pull user's home location
 ![Kibbble Login](/images/Kibbble_Login.png)
+
+Dogs are swiped right to save, left to ignore
+![Kibbble Main Page](/images/Kibbble_Puppy.png)
+
+Dogs can be filtered by sex, size, and age
+![Kibbble Filters](/images/Kibbble_Filters.png)
