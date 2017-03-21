@@ -2,6 +2,8 @@
 It's Tinder for Dogs
 (Built at SF Hacks 2017)
 
+Includes integration with [Thalmic Myo](https://www.myo.com) for hands-free swiping!
+
 ## The Problem:
 Every day in the United States, nearly **_5,500_** dogs and cats are euthanized due to overcrowding in animal shelters.  Part of the problem is that dogs are not always sheltered in areas where they have a high chance of being adopted.  For instance, an animal shelter in Seattle may have many pugs, while the residents of Seattle want golden retrievers. Conversely, a shelter in Portland may have many golden retrievers, while the residents of Portland want pugs.
 
