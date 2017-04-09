@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.hmmelton.kibbble.KibbbleApplication;
+import com.hmmelton.kibbble.models.Filters;
 import com.hmmelton.kibbble.models.User;
 
 /**
@@ -21,6 +22,10 @@ public class SharedPrefsUtil {
 
     // Key strings
     private static final String USER_KEY = "user";
+    private static final String FILTERS_KEY = "pet_filters";
+    /*
+     * Save to local storage
+     */
 
     /**
      * This method saves a user to local storage.
@@ -33,12 +38,36 @@ public class SharedPrefsUtil {
     }
 
     /**
+     * This method saves pet filters to local storage.
+     * @param filters filters to save
+     */
+    public static void savePetFilter(Filters filters) {
+        String filtersJson = mGson.toJson(filters, Filters.class);
+        mEditor.putString(FILTERS_KEY, filtersJson);
+        // Save data to local storage
+        mEditor.commit();
+    }
+
+    /*
+     * Fetch from local storage
+     */
+
+    /**
      * This method returns the current user form local storage.
      * @return Currently-signed in user
      */
     public static User getUser() {
         String json = mPrefs.getString(USER_KEY, null);
         return json == null ? null : mGson.fromJson(json, User.class);
+    }
+
+    /**
+     * This method returns saved filters for pets.
+     * @return Set of filters for available pets
+     */
+    public static Filters getPetFilters() {
+        String json = mPrefs.getString(FILTERS_KEY, null);
+        return json == null ? null : mGson.fromJson(json, Filters.class);
     }
 
     /**
