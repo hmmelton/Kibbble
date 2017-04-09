@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:clickable="true"
-                android:src="@drawable/ic_profile"
+                android:src="@drawable/ic_filters"
                 android:layout_marginRight="@dimen/half_standard_margin"/>
 
             <TextView

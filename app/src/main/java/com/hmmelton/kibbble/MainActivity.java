@@ -7,10 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
+import com.hmmelton.kibbble.fragments.FiltersFragment;
 import com.hmmelton.kibbble.fragments.MainFragment;
-import com.hmmelton.kibbble.fragments.ProfileFragment;
 import com.hmmelton.kibbble.fragments.SavedFragment;
 
 import java.util.ArrayList;
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         // Add Fragments
         adapter.addFragment(SavedFragment.newInstance());
         adapter.addFragment(MainFragment.newInstance());
-        adapter.addFragment(ProfileFragment.newInstance());
+        adapter.addFragment(FiltersFragment.newInstance());
         mPager.setAdapter(adapter);
 
         // Prevent pager from paging

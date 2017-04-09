@@ -1,20 +1,27 @@
-package com.hmmelton.kibbble;
+package com.hmmelton.kibbble.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
+
+import com.hmmelton.kibbble.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SettingsActivity extends AppCompatActivity {
+/**
+ * Created by harrisonmelton on 3/18/17.
+ * This is a fragment for the user's profile page.
+ */
 
-    @BindView(R.id.settings_toolbar)
-    Toolbar mToolbar;
+public class FiltersFragment extends Fragment {
 
     @BindView(R.id.checkbox_male)
     CheckBox mCheckBoxMale;
@@ -29,12 +36,6 @@ public class SettingsActivity extends AppCompatActivity {
     @BindView(R.id.filters_seekbar)
     SeekBar mSeekBar;
 
-    @OnClick(R.id.settings_back)
-    void onBackClicked() {
-        setResult(RESULT_OK);
-        finish();
-    }
-
     @OnClick(R.id.apply_button)
     void onApplyClick() {
         Intent intent = new Intent();
@@ -43,22 +44,18 @@ public class SettingsActivity extends AppCompatActivity {
         intent.putExtra("checkbox_small", mCheckBoxSmall.isChecked());
         intent.putExtra("checkbox_medium", mCheckBoxMedium.isChecked());
         intent.putExtra("checkbox_large", mCheckBoxLarge.isChecked());
-
-        setResult(RESULT_OK);
-        finish();
     }
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_filters, container, false);
+        ButterKnife.bind(this, rootView);
 
-        ButterKnife.bind(this);
+        return rootView;
+    }
 
-        // Remove content insets
-        mToolbar.setContentInsetsAbsolute(0, 0);
-        setSupportActionBar(mToolbar);
-        // Remove default title
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    public static FiltersFragment newInstance() {
+        return new FiltersFragment();
     }
 }
