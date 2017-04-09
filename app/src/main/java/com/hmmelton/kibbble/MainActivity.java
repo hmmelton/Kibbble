@@ -34,9 +34,8 @@ public class MainActivity extends AppCompatActivity {
     /*
      * OnClick methods for scrolling tabs
      */
-    @OnClick(R.id.toolbar_profile)
-    void onProfileClicked() {
-        Log.d(TAG, "profile clicked");
+    @OnClick(R.id.toolbar_saved)
+    void onSavedClicked() {
         mPager.setCurrentItem(0, true);
     }
 
@@ -45,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         mPager.setCurrentItem(1, true);
     }
 
-    @OnClick(R.id.toolbar_saved)
-    void onSavedClicked() {
+    @OnClick(R.id.toolbar_profile)
+    void onProfileClicked() {
         mPager.setCurrentItem(2, true);
     }
 
@@ -73,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Add Fragments
-        adapter.addFragment(ProfileFragment.newInstance());
-        adapter.addFragment(MainFragment.newInstance());
         adapter.addFragment(SavedFragment.newInstance());
+        adapter.addFragment(MainFragment.newInstance());
+        adapter.addFragment(ProfileFragment.newInstance());
         mPager.setAdapter(adapter);
 
         // Prevent pager from paging
