@@ -44,6 +44,7 @@ public class FiltersFragment extends Fragment {
         intent.putExtra("checkbox_small", mCheckBoxSmall.isChecked());
         intent.putExtra("checkbox_medium", mCheckBoxMedium.isChecked());
         intent.putExtra("checkbox_large", mCheckBoxLarge.isChecked());
+
     }
 
     @Nullable

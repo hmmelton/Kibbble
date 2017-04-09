@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.hmmelton.kibbble.fragments.FiltersFragment;
 import com.hmmelton.kibbble.fragments.MainFragment;
 import com.hmmelton.kibbble.fragments.SavedFragment;
+import com.hmmelton.kibbble.views.NonSwipeableViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.pager)
-    ViewPager mPager;
+    NonSwipeableViewPager mPager;
 
     /*
      * OnClick methods for scrolling tabs
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         mPager.setAdapter(adapter);
 
         // Prevent pager from paging
-        mPager.setOnTouchListener((view, motionEvent) -> true);
+        //mPager.setOnTouchListener((view, motionEvent) -> true);
     }
 
     // Adapter class for view pager tabs
