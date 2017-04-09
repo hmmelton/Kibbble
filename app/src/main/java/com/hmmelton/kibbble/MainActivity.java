@@ -67,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
         mPager.setCurrentItem(1);
     }
 
+    /**
+     * This method sets up the Activity's ViewPager
+     */
     private void setUpViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -75,9 +78,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(MainFragment.newInstance());
         adapter.addFragment(FiltersFragment.newInstance());
         mPager.setAdapter(adapter);
-
-        // Prevent pager from paging
-        //mPager.setOnTouchListener((view, motionEvent) -> true);
     }
 
     // Adapter class for view pager tabs
