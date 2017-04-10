@@ -19,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by harrisonmelton on 3/18/17.
@@ -29,6 +30,11 @@ public class SavedFragment extends Fragment {
 
     @BindView(R.id.saved_recycler)
     RecyclerView mSavedRecycler;
+
+    @OnClick(R.id.bt_sign_out)
+    void onSignOutClicked() {
+
+    }
 
     @Nullable
     @Override

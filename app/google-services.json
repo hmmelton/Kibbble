@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "208073277530",
+    "firebase_url": "https://kibbble-bc0c3.firebaseio.com",
+    "project_id": "kibbble-bc0c3",
+    "storage_bucket": "kibbble-bc0c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208073277530:android:5962598c07cab996",
+        "android_client_info": {
+          "package_name": "com.hmmelton.kibbble"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208073277530-agl3cv9pns37cvpr2klihvc9j3ts4kqm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hmmelton.kibbble",
+            "certificate_hash": "bd77752ef784fc007e5e7391baeb1242a52afba9"
+          }
+        },
+        {
+          "client_id": "208073277530-jbv50n1j5iiof8k140qavtobl7fkjho8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtDPrUbLLAbsEwLaubm0xYmnSu1mlNp9Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208073277530-jbv50n1j5iiof8k140qavtobl7fkjho8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,6 +10,7 @@
     <!-- Splashscreen strings -->
     <string name="title_activity_splashscreen">SplashscreenActivity</string>
     <string name="subheader">It\'s Tinder for dogs</string>
+    <string name="login_error">Error signing in</string>
 
     <!-- Login strings -->
     <string name="title_activity_login">Login</string>
@@ -29,4 +30,7 @@
     <string name="large">Large</string>
     <string name="age">Age</string>
     <string name="apply">Apply</string>
+
+    <!-- Saved strings -->
+    <string name="sign_out">Sign Out</string>
 </resources>

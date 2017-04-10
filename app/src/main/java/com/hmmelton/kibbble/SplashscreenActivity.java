@@ -9,18 +9,19 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.hmmelton.kibbble.models.User;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.hmmelton.kibbble.utils.SharedPrefsUtil;
-
-import org.json.JSONException;
 
 import java.util.Arrays;
 
@@ -44,7 +45,6 @@ public class SplashscreenActivity extends AppCompatActivity {
         // Login with Facebook
         LoginManager.getInstance().logInWithReadPermissions(SplashscreenActivity.this,
                 Arrays.asList("public_profile", "email"));
-        //login();
     }
 
     private final int LOGIN_ANIMATION_TIME = 600;
@@ -55,6 +55,9 @@ public class SplashscreenActivity extends AppCompatActivity {
 
     // Facebook callback manager
     private CallbackManager mCallbackManager;
+    // Firebase authentication fields
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,40 @@ public class SplashscreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splashscreen);
         ButterKnife.bind(this);
 
+        // Initialize Facebook login
+        initFacebookLogin();
+        // Initialize Firebase auth
+        initFirebaseAuth();
+
+        setLayoutFullScreen();
+        runLoginDelay();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Required by Facebook SDK
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mAuth != null) {
+            mAuth.removeAuthStateListener(mAuthStateListener);
+        }
+    }
+
+    /**
+     * This method makes the Activity's layout take up the entire screen.
+     */
+    private void setLayoutFullScreen() {
         // Note that some of these constants are new as of API 16 (Jelly Bean)
         // and API 19 (KitKat). It is safe to use them, as they are inlined
         // at compile-time and do nothing on earlier devices.
@@ -71,7 +108,13 @@ public class SplashscreenActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    }
 
+    /**
+     * This method causes the app to delay picking logged in or logged out state until
+     * {@link #SPLASHSCREEN_WAIT_TIME} milliseconds have passed.
+     */
+    private void runLoginDelay() {
         new Handler().postDelayed(() -> {
             // After displaying splash screen,
             if (SharedPrefsUtil.getUser() == null) {
@@ -82,16 +125,6 @@ public class SplashscreenActivity extends AppCompatActivity {
                 login();
             }
         }, SPLASHSCREEN_WAIT_TIME);
-
-        // Initialize Facebook login
-        initFacebookLogin();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // Required by Facebook SDK
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
@@ -105,7 +138,7 @@ public class SplashscreenActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         Log.e(TAG, "going to do graph request");
-                        makeFBGraphRequest(loginResult.getAccessToken());
+                        handleFacebookAccessToken(loginResult.getAccessToken());
                     }
 
                     @Override
@@ -121,36 +154,39 @@ public class SplashscreenActivity extends AppCompatActivity {
     }
 
     /**
-     * This method calls the Facebook Graph API
-     * @param token Facebook login token
+     * This method initializes fields related to Firebase authentication.
      */
-    private void makeFBGraphRequest(AccessToken token) {
-        GraphRequest request = GraphRequest.newMeRequest(
-                token,
-                (object, response) -> {
-                    try {
-                        // Pull values from JSONObject
-                        String email = object.getString("email");
-                        String firstName = object.getString("first_name");
-                        String lastName = object.getString("last_name");
-                        String profileUrl = object.getJSONObject("picture")
-                                .getJSONObject("data")
-                                .getString("url");
-                        String location = "Seattle, WA";
+    private void initFirebaseAuth() {
+        mAuth = FirebaseAuth.getInstance();
+        // TODO: Do I even need this?
+        mAuthStateListener = firebaseAuth -> {
+            // Get current user
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                // User is signed in
+            } else {
+                // User is signed out
+            }
+        };
+    }
 
-                        Log.d(TAG, profileUrl);
-
-                        SharedPrefsUtil.saveUser(new User(firstName, lastName, email, profileUrl,
-                                location));
+    /**
+     * This method authenticates with Firebase, using the passed Facebook AccessToken.
+     * @param token Facebook AccessToken with which to authenticate
+     */
+    private void handleFacebookAccessToken(AccessToken token) {
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, task -> {
+                    if (!task.isSuccessful()) {
+                        // Sign in failed -- notify user
+                        Toast.makeText(SplashscreenActivity.this, R.string.login_error,
+                                Toast.LENGTH_LONG).show();
+                    } else {
+                        // Sign in was successful
                         login();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
                 });
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "first_name,last_name,email,picture.type(large)");
-        request.setParameters(parameters);
-        request.executeAsync();
     }
 
     /**
