@@ -1,5 +1,6 @@
 package com.hmmelton.kibbble.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,10 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.hmmelton.kibbble.R;
+import com.hmmelton.kibbble.SplashscreenActivity;
 import com.hmmelton.kibbble.adapters.SavedDogsAdapter;
 import com.hmmelton.kibbble.models.Profile;
 import com.hmmelton.kibbble.utils.DummyDataUtil;
+import com.hmmelton.kibbble.utils.SharedPrefsUtil;
 
 import java.util.List;
 
@@ -33,22 +37,27 @@ public class SavedFragment extends Fragment {
 
     @OnClick(R.id.bt_sign_out)
     void onSignOutClicked() {
-
+        // Log out from Firebase and local storage
+        SharedPrefsUtil.signOut();
+        FirebaseAuth.getInstance().signOut();
+        // Navigate to splash screen
+        startActivity(new Intent(getActivity(), SplashscreenActivity.class));
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        SwipeRefreshLayout rootView =
-                (SwipeRefreshLayout) inflater.inflate(R.layout.fragment_saved, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_saved, container, false);
+        SwipeRefreshLayout refreshLayout =
+                (SwipeRefreshLayout) rootView.findViewById(R.id.sw_saved_items);
 
         ButterKnife.bind(this, rootView);
 
         setUpRecyclerView();
         // Get initial saved dogs
-        getSavedDogs(rootView);
+        getSavedDogs(refreshLayout);
         // Set refresh listener
-        rootView.setOnRefreshListener(() -> getSavedDogs(rootView));
+        refreshLayout.setOnRefreshListener(() -> getSavedDogs(refreshLayout));
         return rootView;
     }
 
