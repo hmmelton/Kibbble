@@ -21,7 +21,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.hmmelton.kibbble.utils.SharedPrefsUtil;
 
 import java.util.Arrays;
 
@@ -117,7 +116,7 @@ public class SplashscreenActivity extends AppCompatActivity {
     private void runLoginDelay() {
         new Handler().postDelayed(() -> {
             // After displaying splash screen,
-            if (SharedPrefsUtil.getUser() == null) {
+            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                 // User has not yet logged in
                 showLogin();
             } else {
