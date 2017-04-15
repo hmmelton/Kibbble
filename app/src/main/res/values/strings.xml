@@ -20,6 +20,7 @@
 
     <!-- Main screen strings -->
     <string name="no_more_pets_message">No adoptable dogs nearby</string>
+    <string name="error_fetching_pets">An error occurred finding pets in your area</string>
 
     <!-- Settings strings -->
     <string name="title_activity_settings">Settings</string>
