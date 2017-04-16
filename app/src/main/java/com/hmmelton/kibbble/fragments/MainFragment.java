@@ -6,8 +6,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.hmmelton.kibbble.R;
+import com.hmmelton.kibbble.models.Pet;
+import com.hmmelton.kibbble.views.Card;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 
@@ -23,6 +31,9 @@ public class MainFragment extends Fragment {
 
     @SuppressWarnings("unused")
     private final String TAG = getClass().getSimpleName();
+    // Firebase references
+    private final FirebaseDatabase DATABASE = FirebaseDatabase.getInstance();
+    private final DatabaseReference DB_REF = DATABASE.getReference().child("pets").child("dogs");
 
     @BindView(R.id.swipe_view)
     SwipePlaceHolderView mSwipeView;
@@ -38,11 +49,28 @@ public class MainFragment extends Fragment {
                 .setDisplayViewCount(3)
                 .setSwipeDecor(new SwipeDecor()
                         .setPaddingTop(20)
-                        .setRelativeScale(0.01f)
-                        .setSwipeInMsgLayoutId(R.layout.swipe_in_msg_view)
-                        .setSwipeOutMsgLayoutId(R.layout.swipe_out_msg_view));
+                        .setRelativeScale(0.01f));
 
         // TODO: Add pets to view
+        DB_REF.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //Pet pet = dataSnapshot.getValue(Pet.class);
+                for (DataSnapshot petSnapshot : dataSnapshot.getChildren()) {
+                    // Deserialize Pet object
+                    Pet pet = petSnapshot.getValue(Pet.class);
+                    // Add pet card to swipe view
+                    mSwipeView.addView(new Card(getContext(), pet, mSwipeView));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // There was an error fetching pets from Firebase
+                Toast.makeText(getContext(), R.string.error_fetching_pets,
+                        Toast.LENGTH_LONG).show();
+            }
+        });
 
         return rootView;
     }

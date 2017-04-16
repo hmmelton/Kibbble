@@ -7,8 +7,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hmmelton.kibbble.R;
-import com.hmmelton.kibbble.models.Profile;
-import com.hmmelton.kibbble.utils.DummyDataUtil;
+import com.hmmelton.kibbble.models.Pet;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Resolve;
@@ -38,21 +37,21 @@ public class Card {
     @View(R.id.locationNameTxt)
     private TextView locationNameTxt;
 
-    private Profile mProfile;
+    private Pet mPet;
     private Context mContext;
     private SwipePlaceHolderView mSwipeView;
 
-    public Card(Context context, Profile profile, SwipePlaceHolderView swipeView) {
+    public Card(Context context, Pet pet, SwipePlaceHolderView swipeView) {
         mContext = context;
-        mProfile = profile;
+        mPet = pet;
         mSwipeView = swipeView;
     }
 
     @Resolve
     private void onResolved(){
-        Glide.with(mContext).load(mProfile.getUrl()).into(profileImageView);
-        nameAgeTxt.setText(mProfile.getName() + ", " + mProfile.getAge());
-        locationNameTxt.setText(mProfile.getLocation());
+        Glide.with(mContext).load(mPet.getImages().get(0)).into(profileImageView);
+        nameAgeTxt.setText(mPet.getName() + ", " + mPet.getAge());
+        locationNameTxt.setText(mPet.getGender());
     }
 
     @SwipeOut
@@ -68,7 +67,7 @@ public class Card {
     @SwipeIn
     private void onSwipeIn(){
         // Save profile to global collection
-        DummyDataUtil.addSavedProfile(this.mProfile);
+        // TODO: save pet profile
     }
 
     @SwipeInState

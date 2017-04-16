@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.hmmelton.kibbble.models.Profile;
+import com.hmmelton.kibbble.models.Pet;
 import com.hmmelton.kibbble.views.SquareImageView;
 
 import butterknife.BindView;
@@ -19,8 +19,8 @@ public class DogProfileActivity extends AppCompatActivity {
     SquareImageView mProfileImage;
     @BindView(R.id.dog_profile_name)
     TextView mProfileName;
-    @BindView(R.id.dog_profile_location)
-    TextView mProfileLocation;
+    @BindView(R.id.dog_profile_gender)
+    TextView mProfileGender;
     @BindView(R.id.dog_profile_toolbar)
     Toolbar mToolbar;
     @OnClick(R.id.dog_profile_back)
@@ -35,7 +35,7 @@ public class DogProfileActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         // Get dog info from intent extras
-        Profile dog = (Profile) getIntent().getSerializableExtra("profile");
+        Pet dog = (Pet) getIntent().getSerializableExtra("profile");
 
         // Set insets to 0
         mToolbar.setContentInsetsAbsolute(0, 0);
@@ -45,11 +45,11 @@ public class DogProfileActivity extends AppCompatActivity {
 
         // Display image
         Glide.with(this)
-                .load(dog.getUrl())
+                .load(dog.getImages().get(0))
                 .into(mProfileImage);
         // Display name/age
         mProfileName.setText(String.format("%s, %s", dog.getName(), dog.getAge()));
         // Display location
-        mProfileLocation.setText(String.format("%s", dog.getLocation()));
+        mProfileGender.setText(String.format("%s", dog.getGender()));
     }
 }

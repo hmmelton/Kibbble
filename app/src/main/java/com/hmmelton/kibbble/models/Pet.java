@@ -1,24 +1,43 @@
 package com.hmmelton.kibbble.models;
 
+import com.google.firebase.database.PropertyName;
+
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created by harrison on 4/15/17.
  * This is a model class representing a pet available for adoption.
  */
 
-public class Pet {
+public class Pet implements Serializable {
 
-    private String mId;
-    private String mName;
-    private String mBreed;
-    private int mAge;
-    private String mGender;
-    private String mSize;
-    private String mColor;
-    private boolean mSpayedNeutered;
-    private boolean mHousetrained;
-    private String mBio;
-    private String[] mImages;
-    private String mShelterId;
+    @PropertyName("id")
+    String mId;
+    @PropertyName("name")
+    String mName;
+    @PropertyName("breed")
+    String mBreed;
+    @PropertyName("age")
+    int mAge;
+    @PropertyName("saves")
+    int mSaves;
+    @PropertyName("gender")
+    String mGender;
+    @PropertyName("size")
+    String mSize;
+    @PropertyName("color")
+    String mColor;
+    @PropertyName("spayed_neutered")
+    boolean mSpayedNeutered;
+    @PropertyName("housetrained")
+    boolean mHousetrained;
+    @PropertyName("bio")
+    String mBio;
+    @PropertyName("images")
+    List<String> mImages;
+    @PropertyName("shelter_id")
+    String mShelterId;
 
     // Empty constructor for Firebase
     public Pet() {}
@@ -41,8 +60,13 @@ public class Pet {
         return mAge;
     }
 
+    public int getSaves() {
+        return mSaves;
+    }
+
     public String getGender() {
-        return mGender;
+        // TODO: change this in the future for localization
+        return mGender.equals("male") ? "Male" : "Female";
     }
 
     public String getSize() {
@@ -65,7 +89,7 @@ public class Pet {
         return mBio;
     }
 
-    public String[] getImages() {
+    public List<String> getImages() {
         return mImages;
     }
 

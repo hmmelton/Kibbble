@@ -15,11 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.hmmelton.kibbble.R;
 import com.hmmelton.kibbble.SplashscreenActivity;
 import com.hmmelton.kibbble.adapters.SavedDogsAdapter;
-import com.hmmelton.kibbble.models.Profile;
-import com.hmmelton.kibbble.utils.DummyDataUtil;
 import com.hmmelton.kibbble.utils.SharedPrefsUtil;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,20 +68,16 @@ public class SavedFragment extends Fragment {
      * @param layout layout being refreshed
      */
     private void getSavedDogs(SwipeRefreshLayout layout) {
-        List<Profile> dogs = DummyDataUtil.getSavedProfiles();
-
-        layout.setRefreshing(false);
-
-        ((SavedDogsAdapter) mSavedRecycler.getAdapter()).updateList(dogs);
-        mSavedRecycler.getAdapter().notifyDataSetChanged();
+        // TODO: fill this in
     }
 
     /**
      * This method sets up the layout's RecyclerView
      */
     private void setUpRecyclerView() {
+        // TODO: fill with saved pets
         mSavedRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mSavedRecycler.setAdapter(new SavedDogsAdapter(DummyDataUtil.getSavedProfiles()));
+        mSavedRecycler.setAdapter(new SavedDogsAdapter(new ArrayList<>()));
     }
 
 }

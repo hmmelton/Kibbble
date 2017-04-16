@@ -4,16 +4,16 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <com.mindorks.placeholderview.SwipePlaceHolderView
-        android:id="@+id/swipe_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/no_more_pets_message"
         android:textAlignment="center"
         android:layout_gravity="center_vertical"/>
+
+    <com.mindorks.placeholderview.SwipePlaceHolderView
+        android:id="@+id/swipe_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

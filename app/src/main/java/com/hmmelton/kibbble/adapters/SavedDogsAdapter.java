@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hmmelton.kibbble.DogProfileActivity;
 import com.hmmelton.kibbble.R;
-import com.hmmelton.kibbble.models.Profile;
+import com.hmmelton.kibbble.models.Pet;
 
 import java.util.List;
 
@@ -23,13 +23,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SavedDogsAdapter extends RecyclerView.Adapter<SavedDogsAdapter.ViewHolder> {
 
-    private List<Profile> mDogs;
+    private List<Pet> mDogs;
 
-    public SavedDogsAdapter(List<Profile> dogs) {
+    public SavedDogsAdapter(List<Pet> dogs) {
         this.mDogs = dogs;
     }
 
-    public void updateList(List<Profile> dogs) {
+    public void updateList(List<Pet> dogs) {
         this.mDogs = dogs;
     }
 
@@ -43,9 +43,9 @@ public class SavedDogsAdapter extends RecyclerView.Adapter<SavedDogsAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Profile dog = mDogs.get(position);
+        Pet dog = mDogs.get(position);
         Glide.with(holder.imageView.getContext())
-                .load(dog.getUrl())
+                .load(dog.getImages().get(0))
                 .placeholder(R.drawable.ic_profile_placeholder)
                 .into(holder.imageView);
 
@@ -57,7 +57,7 @@ public class SavedDogsAdapter extends RecyclerView.Adapter<SavedDogsAdapter.View
         });
 
         holder.name.setText(dog.getName());
-        holder.info.setText(String.format("%s, %s, %s", dog.getSex(), dog.getBreed(),
+        holder.info.setText(String.format("%s, %s, %s", dog.getGender(), dog.getBreed(),
                 dog.getAge()));
     }
 

@@ -19,3 +19,6 @@
  -keepclassmembers class ** {
    @com.mindorks.placeholderview.annotations.** <methods>;
  }
+ -keepclassmembers class com.hmmelton.kibbble.models.** {
+   *;
+ }
