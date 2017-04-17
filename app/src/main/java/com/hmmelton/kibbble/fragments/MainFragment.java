@@ -3,9 +3,11 @@ package com.hmmelton.kibbble.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,9 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hmmelton.kibbble.R;
 import com.hmmelton.kibbble.models.Pet;
-import com.hmmelton.kibbble.views.Card;
-import com.mindorks.placeholderview.SwipeDecor;
-import com.mindorks.placeholderview.SwipePlaceHolderView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,21 +34,16 @@ public class MainFragment extends Fragment {
     private final FirebaseDatabase DATABASE = FirebaseDatabase.getInstance();
     private final DatabaseReference DB_REF = DATABASE.getReference().child("pets").child("dogs");
 
-    @BindView(R.id.swipe_view)
-    SwipePlaceHolderView mSwipeView;
+    @BindView(R.id.tv_empty_list)
+    TextView mEmptyListTextView;
+    @BindView(R.id.rv_main_fragment)
+    RecyclerView mRecyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, rootView);
-
-        // Create swipe view
-        mSwipeView.getBuilder()
-                .setDisplayViewCount(3)
-                .setSwipeDecor(new SwipeDecor()
-                        .setPaddingTop(20)
-                        .setRelativeScale(0.01f));
 
         // TODO: Add pets to view
         DB_REF.addValueEventListener(new ValueEventListener() {
@@ -59,8 +53,7 @@ public class MainFragment extends Fragment {
                 for (DataSnapshot petSnapshot : dataSnapshot.getChildren()) {
                     // Deserialize Pet object
                     Pet pet = petSnapshot.getValue(Pet.class);
-                    // Add pet card to swipe view
-                    mSwipeView.addView(new Card(getContext(), pet, mSwipeView));
+                    // TODO: Add pet card to swipe view
                 }
             }
 
