@@ -1,25 +1,24 @@
 package com.hmmelton.kibbble.views;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import com.hmmelton.kibbble.R;
 
 /**
  * Created by harrisonmelton on 3/19/17.
+ * This is a custom ImageView that is rendered as a square. The binding dimension (height or width)
+ * is set in XML. If it is not set, the view's height is used to as the binding dimension.
  */
 
-public class SquareImageView extends ImageView {
+public class SquareImageView extends android.support.v7.widget.AppCompatImageView {
 
     private boolean byHeight;
 
     public SquareImageView(Context context) {
         super(context);
-        this.byHeight = true;
+        byHeight = true;
     }
 
     public SquareImageView(Context context, AttributeSet attrs) {
@@ -30,12 +29,6 @@ public class SquareImageView extends ImageView {
     public SquareImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         getAttributes(context, attrs, defStyleAttr, 0);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public SquareImageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        getAttributes(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @SuppressWarnings("all")
