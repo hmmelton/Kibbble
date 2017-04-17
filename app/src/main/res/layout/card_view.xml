@@ -8,33 +8,42 @@
     app:cardCornerRadius="7dp"
     app:cardElevation="4dp"
     app:byHeight="false">
-    <ImageView
-        android:id="@+id/profileImageView"
-        android:scaleType="centerCrop"
-        android:clickable="true"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="75dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:orientation="vertical"
-        android:layout_gravity="bottom"
-        android:gravity="center|left"
-        android:paddingLeft="20dp">
-        <TextView
-            android:id="@+id/nameAgeTxt"
-            android:layout_width="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/locationNameTxt"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/footer_card_item"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="14dp"
-            android:textStyle="normal"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:gravity="center|left"
+            android:paddingLeft="@dimen/standard_margin"
+            android:paddingTop="@dimen/quarter_standard_margin"
+            android:paddingBottom="@dimen/quarter_standard_margin">
+            <TextView
+                android:id="@+id/tv_name_age_card_item"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_gender_card_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="normal"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_card_item"
+            android:layout_above="@id/footer_card_item"
+            android:scaleType="centerCrop"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
 </com.hmmelton.kibbble.views.SquareCardView>

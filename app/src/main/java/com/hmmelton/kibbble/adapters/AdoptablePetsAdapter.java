@@ -4,12 +4,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hmmelton.kibbble.R;
 import com.hmmelton.kibbble.models.Pet;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -41,13 +45,24 @@ public class AdoptablePetsAdapter extends RecyclerView.Adapter<AdoptablePetsAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        // Get pet at given position
+        Pet pet = mPets.get(position);
+        // Set image
+        String imageUrlString = pet.getImages().get(0);
+        if (imageUrlString != null) {
+            Glide.with(holder.profileImageView.getContext())
+                    .load(imageUrlString)
+                    .into(holder.profileImageView);
+        }
+        // Set name
+        holder.nameAgeTextView.setText(pet.getName() + ", " + pet.getAge());
+        // Set gender
+        holder.genderTextView.setText(pet.getGender());
     }
 
     @Override
     public int getItemCount() {
-        // TODO: change this to mPets.size()
-        return 4;
+        return mPets.size();
     }
 
     /**
@@ -56,12 +71,20 @@ public class AdoptablePetsAdapter extends RecyclerView.Adapter<AdoptablePetsAdap
      */
     public void addView(Pet pet) {
         mPets.add(pet);
+        notifyItemInserted(mPets.size() - 1);
     }
 
     /**
      * View holder class for enclosing RecyclerView
      */
     class ViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.iv_card_item)
+        ImageView profileImageView;
+        @BindView(R.id.tv_name_age_card_item)
+        TextView nameAgeTextView;
+        @BindView(R.id.tv_gender_card_item)
+        TextView genderTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);

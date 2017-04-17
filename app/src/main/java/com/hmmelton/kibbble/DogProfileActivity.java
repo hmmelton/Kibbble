@@ -35,7 +35,7 @@ public class DogProfileActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         // Get dog info from intent extras
-        Pet dog = (Pet) getIntent().getSerializableExtra("profile");
+        Pet pet = (Pet) getIntent().getSerializableExtra("profile");
 
         // Set insets to 0
         mToolbar.setContentInsetsAbsolute(0, 0);
@@ -45,11 +45,11 @@ public class DogProfileActivity extends AppCompatActivity {
 
         // Display image
         Glide.with(this)
-                .load(dog.getImages().get(0))
+                .load(pet.getImages().get(0))
                 .into(mProfileImage);
         // Display name/age
-        mProfileName.setText(String.format("%s, %s", dog.getName(), dog.getAge()));
+        mProfileName.setText(pet.getName() + ", " + pet.getAge());
         // Display location
-        mProfileGender.setText(String.format("%s", dog.getGender()));
+        mProfileGender.setText(pet.getGender());
     }
 }
