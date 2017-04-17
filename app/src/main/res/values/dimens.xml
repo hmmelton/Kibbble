@@ -8,4 +8,6 @@
     <dimen name="standard_margin">16dp</dimen>
     <dimen name="half_standard_margin">8dp</dimen>
     <dimen name="quarter_standard_margin">4dp</dimen>
+
+    <dimen name="grid_spacing">5dp</dimen>
 </resources>

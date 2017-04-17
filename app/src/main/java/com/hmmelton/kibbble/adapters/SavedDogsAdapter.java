@@ -73,6 +73,7 @@ public class SavedDogsAdapter extends RecyclerView.Adapter<SavedDogsAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
+            // TODO: use ButterKnife?
 
             imageView = (CircleImageView) itemView.findViewById(R.id.saved_dog_image);
             name = (TextView) itemView.findViewById(R.id.saved_dog_name);
