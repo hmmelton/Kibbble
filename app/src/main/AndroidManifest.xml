@@ -36,7 +36,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DogProfileActivity">
+        <activity android:name=".DogProfileActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
