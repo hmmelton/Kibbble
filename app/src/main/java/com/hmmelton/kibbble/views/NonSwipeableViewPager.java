@@ -51,14 +51,14 @@ public class NonSwipeableViewPager extends ViewPager {
     /**
      * Custom class that handles ViewPager scrolling functionality.
      */
-    public class CustomScroller extends Scroller {
-        public CustomScroller(Context context) {
+    private class CustomScroller extends Scroller {
+        private CustomScroller(Context context) {
             super(context, new DecelerateInterpolator());
         }
 
         @Override
         public void startScroll(int startX, int startY, int dx, int dy, int duration) {
-            super.startScroll(startX, startY, dx, dy, 350 /*1 secs*/);
+            super.startScroll(startX, startY, dx, dy, 250 /*1 secs*/);
         }
     }
 }

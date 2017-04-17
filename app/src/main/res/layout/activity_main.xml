@@ -22,20 +22,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
                 android:src="@drawable/ic_saved"
                 android:clickable="true"
-                android:layout_marginLeft="@dimen/half_standard_margin"/>
+                android:layout_marginRight="@dimen/half_standard_margin"/>
 
             <ImageView
-                android:id="@+id/toolbar_profile"
+                android:id="@+id/toolbar_filters"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"
                 android:clickable="true"
                 android:src="@drawable/ic_filters"
-                android:layout_marginRight="@dimen/half_standard_margin"/>
+                android:layout_marginLeft="@dimen/half_standard_margin"/>
 
             <TextView
                 android:id="@+id/toolbar_title"

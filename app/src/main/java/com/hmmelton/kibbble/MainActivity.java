@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.hmmelton.kibbble.fragments.FiltersFragment;
 import com.hmmelton.kibbble.fragments.MainFragment;
 import com.hmmelton.kibbble.fragments.SavedFragment;
 import com.hmmelton.kibbble.views.NonSwipeableViewPager;
@@ -35,17 +34,17 @@ public class MainActivity extends AppCompatActivity {
      */
     @OnClick(R.id.toolbar_saved)
     void onSavedClicked() {
-        mPager.setCurrentItem(0, true);
+        mPager.setCurrentItem(1, true);
     }
 
     @OnClick(R.id.toolbar_title)
     void onTitleClick() {
-        mPager.setCurrentItem(1, true);
+        mPager.setCurrentItem(0, true);
     }
 
-    @OnClick(R.id.toolbar_profile)
+    @OnClick(R.id.toolbar_filters)
     void onProfileClicked() {
-        mPager.setCurrentItem(2, true);
+        // TODO: bring up filters
     }
 
     @Override
@@ -63,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
         setUpViewPager();
 
-        // Set pager to middle item
-        mPager.setCurrentItem(1);
+        // Set pager to home item
+        mPager.setCurrentItem(0);
     }
 
     /**
@@ -74,9 +73,8 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Add Fragments
-        adapter.addFragment(SavedFragment.newInstance());
         adapter.addFragment(MainFragment.newInstance());
-        adapter.addFragment(FiltersFragment.newInstance());
+        adapter.addFragment(SavedFragment.newInstance());
         mPager.setAdapter(adapter);
     }
 
