@@ -29,10 +29,10 @@ public class GridSpaceItemDecoration extends RecyclerView.ItemDecoration {
             // Item is in first row
             outRect.top = mSpacingSizePx;
         }
-        if (position % mNumCols == 0) {
+        /*if (position % mNumCols == 0) {
             // Item is in first column
             outRect.left = mSpacingSizePx;
-        }
+        }*/
         // Given to all items
         outRect.right = mSpacingSizePx;
         outRect.bottom = mSpacingSizePx;

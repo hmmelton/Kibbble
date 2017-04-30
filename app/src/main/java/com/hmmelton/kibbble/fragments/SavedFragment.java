@@ -15,13 +15,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.hmmelton.kibbble.R;
 import com.hmmelton.kibbble.SplashscreenActivity;
 import com.hmmelton.kibbble.adapters.SavedDogsAdapter;
-import com.hmmelton.kibbble.utils.SharedPrefsUtil;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.hmmelton.kibbble.utils.SharedPrefsUtil;
 
 /**
  * Created by harrisonmelton on 3/18/17.

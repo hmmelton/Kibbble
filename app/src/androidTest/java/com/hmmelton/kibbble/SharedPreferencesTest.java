@@ -3,7 +3,6 @@ package com.hmmelton.kibbble;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.hmmelton.kibbble.models.Filters;
-import com.hmmelton.kibbble.utils.SharedPrefsUtil;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,17 +1,14 @@
 package com.hmmelton.kibbble.utils;
 
 import android.content.SharedPreferences;
-
 import com.google.gson.Gson;
 import com.hmmelton.kibbble.KibbbleApplication;
 import com.hmmelton.kibbble.models.Filters;
 import com.hmmelton.kibbble.models.User;
 
 /**
- * Created by harrisonmelton on 3/18/17.
- * Utility file for SharedPreferences
+ * Created by harrisonmelton on 4/29/17.
  */
-
 public class SharedPrefsUtil {
     // SharedPreferences and Gson setup
     private static final String PREFS_NAME = "sonora_preferences";
@@ -19,7 +16,7 @@ public class SharedPrefsUtil {
             KibbbleApplication.getInstance().getSharedPreferences(PREFS_NAME, 0);
     private static final SharedPreferences.Editor mEditor = mPrefs.edit();
     private static final Gson mGson = new Gson();
-
+ 
     // Key strings
     private static final String USER_KEY = "user";
     private static final String FILTERS_KEY = "pet_filters";
@@ -36,7 +33,7 @@ public class SharedPrefsUtil {
         mEditor.putString(USER_KEY, json);
         mEditor.commit();
     }
-
+ 
     /**
      * This method saves pet filters to local storage.
      * @param filters filters to save
@@ -47,20 +44,20 @@ public class SharedPrefsUtil {
         // Save data to local storage
         mEditor.commit();
     }
-
+ 
     /*
      * Fetch from local storage
      */
 
     /**
      * This method returns the current user form local storage.
-     * @return Currently-signed in user
+     * @return Currentlysigned in user
      */
     public static User getUser() {
         String json = mPrefs.getString(USER_KEY, null);
         return json == null ? null : mGson.fromJson(json, User.class);
     }
-
+ 
     /**
      * This method returns saved filters for pets.
      * @return Set of filters for available pets
@@ -69,7 +66,7 @@ public class SharedPrefsUtil {
         String json = mPrefs.getString(FILTERS_KEY, null);
         return json == null ? null : mGson.fromJson(json, Filters.class);
     }
-
+ 
     /**
      * This method signs the current user out of local storage.
      */
