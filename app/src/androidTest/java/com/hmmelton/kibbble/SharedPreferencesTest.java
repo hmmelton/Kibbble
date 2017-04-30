@@ -22,9 +22,9 @@ public class SharedPreferencesTest {
                 new boolean[]{false, false, true}, // sizes
                 new int[]{}); // ages
         // Save to local storage
-        SharedPrefsUtil.savePetFilter(filters);
+        SharedPrefsUtil.INSTANCE.savePetFilter(filters);
         // Fetch from local storage
-        Filters filters1 = SharedPrefsUtil.getPetFilters();
+        Filters filters1 = SharedPrefsUtil.INSTANCE.getPetFilters();
 
         Assert.assertNotNull("oops, array is null", filters1);
         Assert.assertArrayEquals("oops, arrays are not equal",

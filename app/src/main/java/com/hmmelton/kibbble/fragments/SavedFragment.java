@@ -15,13 +15,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.hmmelton.kibbble.R;
 import com.hmmelton.kibbble.SplashscreenActivity;
 import com.hmmelton.kibbble.adapters.SavedDogsAdapter;
+import com.hmmelton.kibbble.utils.SharedPrefsUtil;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.hmmelton.kibbble.utils.SharedPrefsUtil;
 
 /**
  * Created by harrisonmelton on 3/18/17.
@@ -36,7 +36,7 @@ public class SavedFragment extends Fragment {
     @OnClick(R.id.bt_sign_out)
     void onSignOutClicked() {
         // Log out from Firebase and local storage
-        SharedPrefsUtil.signOut();
+        SharedPrefsUtil.INSTANCE.signOut();
         FirebaseAuth.getInstance().signOut();
         // Navigate to splash screen
         startActivity(new Intent(getActivity(), SplashscreenActivity.class));

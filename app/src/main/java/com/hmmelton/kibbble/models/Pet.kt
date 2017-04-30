@@ -54,4 +54,9 @@ class Pet : Serializable {
     // TODO: change this in the future for localization
     val gender: String
         get() = if (mGender == "male") "Male" else "Female"
+
+    fun test() {
+        var pet: Pet = Pet()
+
+    }
 }
