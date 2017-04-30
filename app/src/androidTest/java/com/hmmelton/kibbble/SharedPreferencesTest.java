@@ -20,7 +20,7 @@ public class SharedPreferencesTest {
         Filters filters = new Filters(
                 new boolean[]{true, true}, // sexes
                 new boolean[]{false, false, true}, // sizes
-                new boolean[]{}); // ages
+                new int[]{}); // ages
         // Save to local storage
         SharedPrefsUtil.savePetFilter(filters);
         // Fetch from local storage
