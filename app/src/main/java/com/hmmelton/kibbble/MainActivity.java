@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Add Fragments
-        adapter.addFragment(MainFragment.newInstance());
-        adapter.addFragment(SavedFragment.newInstance());
+        adapter.addFragment(MainFragment.Companion.newInstance());
+        adapter.addFragment(SavedFragment.Companion.newInstance());
         mPager.setAdapter(adapter);
     }
 
