@@ -12,7 +12,7 @@ import com.hmmelton.kibbble.models.User
 object SharedPrefsUtil {
     // SharedPreferences and Gson setup
     private val PREFS_NAME = "sonora_preferences"
-    private val mPrefs = KibbbleApplication.getInstance().getSharedPreferences(PREFS_NAME, 0)
+    private val mPrefs = KibbbleApplication.Companion.instance!!.getSharedPreferences(PREFS_NAME, 0)
     private val mEditor = mPrefs.edit()
     private val mGson = Gson()
 
